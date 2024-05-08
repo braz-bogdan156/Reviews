@@ -5,28 +5,33 @@ import { reviews } from "@/app/test/test"
 import Select from "@/app/components/Select"
 import { Review } from "./interfaces/interface";
 import {AverageReviews} from "@/app/components/AverageReviews"
+import ButtonPlusReviews from "./components/ButtonPlusReviews";
 
 export default function Home() {
   const [filter, setFilter] = useState<string>('');
-  const array: string[] = ['За рейтингом', 'За датою'];
+  const array: string[] = ['Спочатку найкращі', 'Найгірші'];
     const Filter=():Review[] | undefined=>{
-     if(filter==='За рейтингом'){
-        return reviews.sort((a,b) => b.rating-a.rating);
+     if(filter==='Спочатку найкращі'){
+        return reviews.filter(review => review.rating >= 4 && review.rating <= 5);
       
-     } else if(filter==='За датою')
+     } else if(filter==='Найгірші')
      {
         
-      return reviews.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());;
+      reviews.filter(review => review.rating >= 1 && review.rating <= 3);
     } 
+    
     };
-    Filter();
+     Filter();
+    
+    const [showButton, setShowButton] = useState<boolean>(true); // Стан для відображення кнопки
   return (
 
     <div>
-      
+      <AverageReviews reviews={reviews} ></AverageReviews>
       <Select value={filter} setValue={setFilter} array={array}></Select>
       <ReviewList reviews={reviews}></ReviewList>
-      <AverageReviews reviews={reviews} ></AverageReviews>
+      
+      {showButton && <ButtonPlusReviews />} {/* Умовне відображення кнопки */}
     </div>
 
   )

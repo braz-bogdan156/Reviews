@@ -8,11 +8,12 @@ interface Props {
 
 const ReviewList: React.FC<Props> = ({ reviews }) => {
   return (
-    <div >
+    <div className="flex justify-end px-2.5">
+    <div className="w-full md:w-5/6 lg:w-11/12 xl:w-8/12 2xl:w-11/12">
       {reviews.map((review) => (
         <div
           key={review.id}
-          className='border p-4 my-2'
+          className='border p-4 my-2.5'
         >
           <h3 className='font-bold text-lg'>
             {review.author} <span className="text-gray-500"> {review.date}</span>
@@ -23,6 +24,7 @@ const ReviewList: React.FC<Props> = ({ reviews }) => {
           <p className="mt-2 text-gray-700">{review.content}</p>
         </div>
       ))}
+    </div>
     </div>
   );
 };
