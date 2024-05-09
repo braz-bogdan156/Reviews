@@ -1,10 +1,10 @@
 
-// Визначте інтерфейс для властивостей компонента StarRating
+// Визначаємо інтерфейс для властивостей компонента StarRating
 interface StarRatingProps {
   rating: number;
 }
 
-// Оновіть компонент StarRating, щоб він приймав 'rating' як властивість
+// Оновлюємо компонент StarRating, щоб він приймав 'rating' як властивість
 const StarRating: React.FC<StarRatingProps> = ({ rating }) => {
   const fullStars = Math.floor(rating);
   const halfStar = rating % 1 >= 0.5 ? 1 : 0; // визначаємо, чи є половина зірки

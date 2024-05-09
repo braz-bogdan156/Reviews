@@ -1,36 +1,33 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
 
-First, run the development server:
+Відкриваємо [http://localhost:3000](http://localhost:3000) ,щоб побачити живу сторінку.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Структура:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+AverageReviews: Компонент, що відображає середню оцінку всіх відгуків та кількість відгуків.
+ButtonPlusReviews: Компонент кнопки “Показати ще”, який дозволяє завантажувати додаткові відгуки.
+ReviewList: Компонент, що відображає список відгуків.
+Select: Компонент випадаючого списку для вибору фільтра відгуків.
+StarRating: Компонент, що відображає рейтинг у вигляді зірок.
+Filter: Функція для фільтрації та сортування відгуків.
+loadMoreReviews: Функція для завантаження нових відгуків з сервера.
+Home: Головний компонент сторінки, що об’єднує всі вищезазначені компоненти.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Особливості:
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Використання useState та useEffect для управління станом та побічними ефектами.
+Використання useCallback для оптимізації функцій, що передаються як пропси.
+Використання async/await для асинхронного завантаження даних.
+Використання:
 
-## Learn More
+Користувач може переглядати відгуки та їх середню оцінку.
+За допомогою кнопки “Показати ще” можна завантажити більше відгуків.
+Випадаючий список дозволяє фільтрувати відгуки за рейтингом.
+Рейтинг кожного відгуку відображається у вигляді зірок.
 
-To learn more about Next.js, take a look at the following resources:
+Інструкції:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Для коректної роботи компонента AverageReviews необхідно передати масив відгуків як пропс reviews.
+Компонент ButtonPlusReviews використовує функцію loadMoreReviews для завантаження додаткових відгуків.
+У компоненті Select можна вибрати фільтр для сортування відгуків, який впливає на список відображених відгуків.
+Функція Filter використовується для сортування відгуків у компоненті Home.

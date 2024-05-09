@@ -1,19 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { Review } from '../interfaces/interface';
+import loadMoreReviews from '../functions/LoadMoreReviews';
 
 const ButtonPlusReviews: React.FC = () => {
   const [reviews, setReviews] = useState<Review[]>([]); // початковий стан відгуків
 
-  // Функція для завантаження нових відгуків
-  const loadMoreReviews = async () => {
-    try {
-      const response = await fetch('URL_сервера/відгуки'); // замініть URL_сервера на реальний URL
-      const newReviews: Review[] = await response.json();
-      setReviews(prevReviews => [...prevReviews, ...newReviews]); // додаємо нові відгуки до існуючих
-    } catch (error) {
-      console.error('Помилка при завантаженні відгуків:', error);
+  const [showButton, setShowButton] = useState<boolean>(true); // Стан для відображення кнопки
+
+    // Функція для завантаження відгуків
+  const handleLoadMoreReviews = useCallback(async () => {
+    const newReviews = await loadMoreReviews();
+    setReviews(prevReviews => [...prevReviews, ...newReviews]);
+    if (newReviews.length === 0) {
+      setShowButton(false); // Якщо нових відгуків немає, приховуємо кнопку
     }
-  };
+  }, []);
 
   return (
     <div>
@@ -25,7 +26,10 @@ const ButtonPlusReviews: React.FC = () => {
           <p>Date: {review.date}</p>
         </div>
       ))}
-      <button onClick={loadMoreReviews}>Ще</button>
+      <div className='flex justify-center'>
+      <button className=' bg-gray-200  mt-4  px-3 py-2 rounded-full text-sm hover:bg-gray-300 font-medium  w-50' 
+      onClick={handleLoadMoreReviews}>Показати ще</button>
+      </div>
     </div>
   );
 };

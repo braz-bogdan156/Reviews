@@ -15,11 +15,11 @@ export const AverageReviews: React.FC<AverageReviewsProps> = ({ reviews }) => {
     }, [reviews]);
 
     return (
-        <div className='mx-8 my-8 p-4 border-2 w-3/8 lg:w-1/4 justify-start'>
+        <div className=' p-4 border-2 '>
             <p className='text-5xl font-bold'> {averageRating}</p>
-            <div className="lex justify-center mt-2">
+            
                 <StarRating rating={averageRating} />
-            </div>
+            
             <p>на основі <strong>{reviews.length}</strong> відгуків</p>
         </div>
     );
